@@ -64,31 +64,69 @@ Final Answer (LLM)
 
 ```
 .
-├── agent/
-│   ├── planner.py        # LLM-based planning
-│   ├── router.py         # Step routing logic
-│   ├── loop.py           # Agent execution loop
-│   ├── memory.py         # Advanced memory system
-│   └── llm.py            # LLM abstraction
-│
-├── tools/
-│   ├── rag_tool.py
-│   ├── python_tool.py
-│   └── calc_tool.py
-│
-├── retrieval/
-│   ├── hybrid_retriever.py
-│   ├── faiss_index.py
-│   ├── bm25.py
-│   ├── fusion.py
-│   └── reranker.py
-│
-├── data/
-│   └── *.txt
+DeepAgent/
 │
 ├── main.py
+│   └── For Deployemnt 
+│
+├── README.md
+│   └── Project overview, setup instructions, architecture explanation, and usage
+│
 ├── requirements.txt
-└── README.md
+│   └── Python dependencies for agent, RAG system, and LLM integration
+│
+├── Architecture-Digram.png
+│   └── High-level system architecture of the agent + Hybrid RAG pipeline
+│
+├── test_agent.py
+│   └── Entry point for running the autonomous AI agent and handling user interaction
+│
+├── agent/
+│   ├── __init__.py
+│   │
+│   ├── llm.py
+│   │   └── LLM abstraction layer (prompt handling, model calls, response parsing)
+│   │
+│   ├── planner.py
+│   │   └── Task planning and reasoning logic for multi-step agent execution
+│   │
+│   ├── router.py
+│   │   └── Intent-based routing of user queries to appropriate agent actions
+│   │
+│   ├── memory.py
+│   │   └── Agent memory abstraction (short-term / extensible for long-term memory)
+│   │
+│   ├── loop.py
+│   │   └── Core agent execution loop (Reason → Act → Observe → Decide)
+│
+├── Hyprid_RagSystem/
+│   ├── __init__.py
+│   │
+│   ├── pipeline.py
+│   │   └── Smart Hybrid RAG pipeline combining dense + sparse retrieval,
+│   │       query expansion, fusion, and re-ranking
+│   │
+│   ├── embedder.py
+│   │   └── Embedding engine with caching, normalization, and batch processing
+│   │
+│   ├── faiss_index.py
+│   │   └── Dense vector index using FAISS with persistence and ID mapping
+│   │
+│   ├── bm25_index.py
+│   │   └── Sparse lexical retrieval using BM25 for keyword-based search
+│   │
+│   ├── fusion.py
+│   │   └── Reciprocal Rank Fusion (RRF) for combining dense and sparse results
+│   │
+│   ├── rerank.py
+│   │   └── Cross-encoder semantic re-ranking for final context selection
+│   │
+│   ├── utils.py
+│   │   └── Shared utility functions for chunking, preprocessing, and helpers
+│   │
+│   └── config.py
+│       └── Centralized configuration for models, retrieval parameters, and thresholds
+
 ```
 
 ---
